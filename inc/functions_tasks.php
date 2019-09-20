@@ -4,9 +4,11 @@
 function getTasks($where = null)
 {
     global $db;
+	$user_id = findUserByAccessToken()['id'];
     $query = "SELECT * FROM tasks ";
-    if (!empty($where)) $query .= "WHERE $where";
-    $query .= " ORDER BY id";
+	$query .= "WHERE user_id = $user_id";
+    if (!empty($where)) $query .= " AND $where";
+	$query .= " ORDER BY id";
     try {
         $statement = $db->prepare($query);
         $statement->execute();

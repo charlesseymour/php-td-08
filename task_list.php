@@ -4,6 +4,7 @@ require 'inc/bootstrap.php';
 $pageTitle = "Task List | Time Tracker";
 $page = "tasks";
 
+
 $filter = request()->get('filter');
 if ($filter=='all') {
     $tasks = getTasks();
