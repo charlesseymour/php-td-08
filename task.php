@@ -1,6 +1,6 @@
 <?php
 require_once 'inc/bootstrap.php';
-
+requireAuth();
 $pageTitle = "Task | Time Tracker";
 $page = "task";
 
