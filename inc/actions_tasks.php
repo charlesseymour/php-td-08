@@ -1,5 +1,7 @@
 <?php
 require_once "bootstrap.php";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 $action = request()->get('action');
 $task_id = request()->get('task_id');
@@ -16,9 +18,16 @@ case "add":
     if (empty($task)) {
         $session->getFlashBag()->add('error', 'Please enter a task');
     } else {
-        if (createTask(['task'=>$task, 'status'=>$status])) {
+        /*if (createTask(['task'=>$task, 'status'=>$status])) {
             $session->getFlashBag()->add('success', 'New Task Added');
-        }
+        }*/
+		try {
+			createTask(['task'=>$task, 'status'=>$status]);
+			$session->getFlashBag()->add('success', 'New Task Added');
+		} catch (\Exception $e) {
+			$session->getFlashBag()->add('error', 'Cannot add task without being logged in');
+			redirect('/login.php');
+		}
     }
     break;
 case "update":
