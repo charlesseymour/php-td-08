@@ -11,6 +11,7 @@ include 'inc/header.php';
     <div class="col-container actions-container">
 
       <h1>Welcome</h1>
+	  <?php if (isAuthenticated()) : ?>
       <p class="actions-copy">What would you like to do today?</p>
       <div class="actions-wrapper">
         <ul class="actions">
@@ -36,6 +37,9 @@ include 'inc/header.php';
                 <svg viewbox="0 0 64 64"><use xlink:href="#user_icon"></use></svg>
               </span>
                 Register
-		</div>
+	  </div>
+	  <?php else : ?>
+	  <p class="actions-copy">Please login or register to view and add tasks</p>
+	  <?php endif; ?>
 
 <?php include("inc/footer.php"); ?>

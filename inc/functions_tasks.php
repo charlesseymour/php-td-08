@@ -153,7 +153,7 @@ function createUser($username, $password)
 	}
 }
 
-function updatePassword($password, $userID) {
+function updatePassword($password, $userId) {
 	global $db;
 	
 	try {
@@ -165,6 +165,8 @@ function updatePassword($password, $userID) {
 	} catch (\Exception $e) {
 		return false;
 	}
+	
+	return true;
 }
 
 function decodeJwt($prop = null) {

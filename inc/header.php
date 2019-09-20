@@ -53,9 +53,11 @@
       </h1>
 
         <ul class="nav navbar-left">
+		<?php if (isAuthenticated()) : ?>
         <li class="nav-item tasks<?php if ($page == "tasks") { echo " on"; } ?>"><a class="nav-link" href="task_list.php">View Tasks</a></li>
         <li class="nav-item task<?php if ($page == "task") { echo " on"; } ?>"><a class="nav-link" href="task.php">Add Tasks</a></li>
-      </ul>
+		<?php endif; ?>
+	  </ul>
         <ul class="nav">
 			<?php if (isAuthenticated()) : ?>
             <li class="nav-item task<?php if ($page == "account") { echo " on"; } ?>"><a class="nav-link" href="/account.php">My Account</a></li>
