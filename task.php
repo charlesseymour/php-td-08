@@ -3,9 +3,14 @@ require_once 'inc/bootstrap.php';
 requireAuth();
 $pageTitle = "Task | Time Tracker";
 $page = "task";
+$user = findUserByAccessToken();
 
 if (request()->get('id')) {
-    list($task_id, $task, $status) = getTask(request()->get('id'));
+	list($task_id, $task, $status, $user_id) = getTask(request()->get('id'));
+	if ($user_id != $user['id']) {
+		$session->getFlashBag()->add('error', 'Task was not found');
+		redirect('/');
+	}
 }
 
 include 'inc/header.php';

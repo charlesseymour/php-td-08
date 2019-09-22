@@ -32,7 +32,7 @@ function getTask($task_id)
     global $db;
 
     try {
-        $statement = $db->prepare('SELECT id, task, status FROM tasks WHERE id=:id');
+        $statement = $db->prepare('SELECT id, task, status, user_id FROM tasks WHERE id=:id');
         $statement->bindParam('id', $task_id);
         $statement->execute();
         $task = $statement->fetch();

@@ -16,4 +16,19 @@ $hashed = password_hash($password, PASSWORD_DEFAULT);
 
 $user = createUser($username, $hashed);
 
-redirect('/');
+$expTime = time() + 3600;
+
+$jwt = \Firebase\JWT\JWT::encode([
+	'iss' => request()->getBaseUrl(),
+	'sub' => "{$user['id']}",
+	'exp' => $expTime,
+	'iat' => time(),
+	'nbf' => time()
+], getenv("SECRET_KEY"), 'HS256');
+
+$accessToken = new Symfony\Component\HttpFoundation\Cookie('access_token', $jwt, $expTime, '/', 
+															getenv('COOKIE_DOMAIN'));
+															
+redirect('/', ['cookies' => [$accessToken]]);
+
+//redirect('/');

@@ -3,6 +3,7 @@ require_once "bootstrap.php";
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+requireAuth();
 $action = request()->get('action');
 $task_id = request()->get('task_id');
 $task = request()->get('task');
