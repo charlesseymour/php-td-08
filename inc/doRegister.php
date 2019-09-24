@@ -1,6 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
 require __DIR__ . '/bootstrap.php';
 
 $password = request()->get('password');
@@ -30,5 +29,3 @@ $accessToken = new Symfony\Component\HttpFoundation\Cookie('access_token', $jwt,
 															getenv('COOKIE_DOMAIN'));
 															
 redirect('/', ['cookies' => [$accessToken]]);
-
-//redirect('/');

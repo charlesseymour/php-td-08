@@ -1,7 +1,5 @@
 <?php
 require_once "bootstrap.php";
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 requireAuth();
 $action = request()->get('action');
@@ -19,9 +17,6 @@ case "add":
     if (empty($task)) {
         $session->getFlashBag()->add('error', 'Please enter a task');
     } else {
-        /*if (createTask(['task'=>$task, 'status'=>$status])) {
-            $session->getFlashBag()->add('success', 'New Task Added');
-        }*/
 		try {
 			createTask(['task'=>$task, 'status'=>$status]);
 			$session->getFlashBag()->add('success', 'New Task Added');
